@@ -17,7 +17,7 @@
             <option value="$PROJECT_DIR$/features/track-list-main" />
             <option value="$PROJECT_DIR$/features/track-list-main/domain" />
             <option value="$PROJECT_DIR$/features/track-list-main/ui" />
-            <option value="$PROJECT_DIR$/musicapi" />
+            <option value="$PROJECT_DIR$/music-api" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
