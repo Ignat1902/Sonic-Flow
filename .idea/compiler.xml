@@ -5,6 +5,8 @@
       <module name="SonicFlow.app" target="21" />
       <module name="SonicFlow.data" target="21" />
       <module name="SonicFlow.database" target="21" />
+      <module name="SonicFlow.features.music-main" target="21" />
+      <module name="SonicFlow.uikit" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>
