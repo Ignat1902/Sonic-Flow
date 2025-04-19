@@ -3,5 +3,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="track_cover">Элемент списка треков</string>
     <string name="search_hint_text">Поиск в песнях</string>
-    <string name="action_image_view_content_desc">Действие с песней</string>
+    <string name="explicit_content_desc">Трек содержит ненормативную лексику\n</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_alert_dialog">Ошибка</string>
+    <string name="supporting_text_alert_dialog">Проверьте подключение и обновите страницу.</string>
+    <string name="retry">Повторить</string>
+    <string name="cancel">Закрыть</string>
+</resources>

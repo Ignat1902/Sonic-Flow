@@ -1,10 +1,11 @@
 package dev.ginger.musicapi
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dev.ginger.musicapi.models.ResponseDTO
 import dev.ginger.musicapi.models.TrackDTO
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.create
@@ -33,7 +34,7 @@ interface MusicApi {
 
 fun MusicApi(
     baseUrl: String,
-    okHttpClient: OkHttpClient,
+    okHttpClient: OkHttpClient? = null,
 ): MusicApi = retrofit(baseUrl, okHttpClient).create()
 
 
@@ -54,5 +55,6 @@ private fun retrofit(
         .baseUrl(baseUrl)
         .run { if (okHttpClient != null) client(okHttpClient) else this }
         .addConverterFactory(json.asConverterFactory(contentType))
+        .addCallAdapterFactory(ResultCallAdapterFactory.create())
         .build()
 }

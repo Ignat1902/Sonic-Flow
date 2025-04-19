@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "dev.ginger.uikit"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -23,6 +23,9 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -33,8 +36,9 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.glide)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.swiperefreshlayout)
 }

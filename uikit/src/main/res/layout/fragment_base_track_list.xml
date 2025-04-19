@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:padding="16dp"
     tools:context=".BaseTrackListFragment">
 
@@ -24,17 +25,47 @@
         tools:text="@tools:sample/lorem/random" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/track_list_recycler"
-        android:layout_width="0dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:clipToPadding="false"
-        android:paddingBottom="12dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_edit_text"
-        tools:listitem="@layout/base_track_list_item" />
+        app:layout_constraintTop_toBottomOf="@id/search_edit_text">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/track_list_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:visibility="visible"
+            tools:listitem="@layout/base_track_list_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        android:textColor="@color/error"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_edit_text"
+        tools:text="@tools:sample/lorem/random" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

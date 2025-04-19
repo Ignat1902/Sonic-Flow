@@ -5,35 +5,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import dev.ginger.uikit.databinding.FragmentBaseTrackListBinding
+import dev.ginger.uikit.models.TrackUI
+import dev.ginger.uikit.recyclerview.BaseTrackListAdapter
 
-abstract class BaseRecyclerFragment<T : Any, VH : RecyclerView.ViewHolder> : Fragment() {
+abstract class BaseTrackListFragment : Fragment() {
 
-    abstract val adapter: ListAdapter<T, VH>
-    abstract val viewModel: ViewModel
+    private var _binding: FragmentBaseTrackListBinding? = null
+    protected val binding get() = _binding!!
+
+    private val adapter = BaseTrackListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_base_track_list, container, false)
+        _binding = FragmentBaseTrackListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupRecyclerView(view.findViewById(R.id.track_list_recycler))
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.trackListRecycler.let {
+            it.layoutManager = LinearLayoutManager(requireContext())
+            it.adapter = adapter
+            it.addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
+
     }
 
-    private fun setupRecyclerView(recycler: RecyclerView) {
-        recycler.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapter
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        }
+    protected fun updateData(data: List<TrackUI>) {
+        adapter.trackList = data
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
