@@ -1,11 +1,21 @@
 package dev.ginger.data.models
 
+import dev.ginger.data.RequestResult
 import dev.ginger.music.database.models.AlbumDBO
 import dev.ginger.music.database.models.ArtistDBO
 import dev.ginger.music.database.models.TrackDBO
 import dev.ginger.musicapi.models.AlbumDTO
 import dev.ginger.musicapi.models.ArtistDTO
 import dev.ginger.musicapi.models.TrackDTO
+
+
+fun <I : Any, O : Any> RequestResult<I>.map(mapper: (I) -> O): RequestResult<O> {
+    return when (this) {
+        is RequestResult.Success -> RequestResult.Success(mapper(data))
+        is RequestResult.Error -> RequestResult.Error(message)
+        is RequestResult.Loading -> RequestResult.Loading(data?.let(mapper))
+    }
+}
 
 internal fun TrackDBO.toTrack(): Track {
     return Track(

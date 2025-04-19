@@ -2,93 +2,74 @@ package dev.ginger.data
 
 import dev.ginger.data.models.Track
 import dev.ginger.data.models.toTrack
-import dev.ginger.data.models.toTrackDBO
 import dev.ginger.music.database.MusicDatabase
 import dev.ginger.musicapi.MusicApi
 import dev.ginger.musicapi.models.ResponseDTO
 import dev.ginger.musicapi.models.TrackDTO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
+import javax.inject.Inject
 
-class MusicRepository(
-    private val database: MusicDatabase,
+class MusicRepository @Inject constructor(
+//    private val database: MusicDatabase,
     private val api: MusicApi,
 ) {
 
     fun getChart(): Flow<RequestResult<List<Track>>> = flow {
         //Оповещаем о начале загрузки данных
         emit(RequestResult.Loading(null))
-
-        val localChart = database.trackDao.getChartTracks().map { it.toTrack() }
-        emit(RequestResult.Loading(data = localChart))
+        delay(1000L)
 
         //Получаем от сервера ответ
         val remoteChart: Result<ResponseDTO<TrackDTO>> = api.getChartTracks()
 
         //Вызываем функцию для обработки результата с сервера
-        remoteChart.runCatching {
-            //Добавляем в базу данных данные с сервера
-            database.trackDao.insert(remoteChart
-                .getOrThrow().data
-                .map { it.toTrackDBO() })
+        remoteChart.onSuccess {
+            val trackList = remoteChart.getOrThrow().data.map { it.toTrack() }
+            emit(RequestResult.Success(trackList))
         }.onFailure {
             when (it) {
                 is IOException -> {
                     emit(
                         RequestResult.Error(
-                            localChart,
-                            "Сервер не отвечает. Проверьте своё интернет соединение."
+                            "Сервер не отвечает. Проверьте своё интернет соединение. \nДетали: ${it.message.toString()}"
                         )
                     )
                 }
 
                 else -> {
-                    emit(RequestResult.Error(localChart, "Произошла ошибка: ${it.message}"))
+                    emit(RequestResult.Error("Произошла ошибка: ${it.message}"))
                 }
             }
         }
-        //Получаем актуальные данные с базы данных
-        val result = database.trackDao.getChartTracks().map { it.toTrack() }
-        emit(RequestResult.Success(result))
     }
 
 
     fun searchTrack(query: String): Flow<RequestResult<List<Track>>> = flow {
-        //Оповещаем о начале загрузки данных
         emit(RequestResult.Loading(null))
 
-        val localTrack = database.trackDao.searchTrack(query).map { it.toTrack() }
-        emit(RequestResult.Loading(data = localTrack))
+        val remote: Result<ResponseDTO<TrackDTO>> = api.searchTracks(query)
 
-        //Получаем от сервера ответ
-        val remoteTrack: Result<ResponseDTO<TrackDTO>> = api.searchTracks(query)
-
-        //Вызываем функцию для обработки результата с сервера
-        remoteTrack.runCatching {
-            //Добавляем в базу данных данные с сервера
-            database.trackDao.insert(remoteTrack
-                .getOrThrow().data
-                .map { it.toTrackDBO() })
+        remote.onSuccess {
+            val trackList = remote.getOrThrow().data.map { it.toTrack() }
+            emit(RequestResult.Success(trackList))
         }.onFailure {
             when (it) {
                 is IOException -> {
                     emit(
                         RequestResult.Error(
-                            localTrack,
-                            "Сервер не отвечает. Проверьте своё интернет соединение."
+                            "Сервер не отвечает. Проверьте своё интернет соединение. \nДетали: ${it.message.toString()}"
                         )
                     )
                 }
 
                 else -> {
-                    emit(RequestResult.Error(localTrack, "Произошла ошибка: ${it.message}"))
+                    emit(RequestResult.Error("Произошла ошибка: ${it.message}"))
                 }
             }
         }
-        //Получаем актуальные данные с базы данных
-        val result = database.trackDao.searchTrack(query).map { it.toTrack() }
-        emit(RequestResult.Success(result))
     }
 
 
@@ -97,9 +78,9 @@ class MusicRepository(
 /**
  * Обертка над данными, чтобы обрабатывать ошибки
  */
-sealed class RequestResult<E>(protected val data: E?) {
+sealed class RequestResult<E>(open val data: E? = null, val message: String? = null) {
 
-    class Loading<E>(data: E?) : RequestResult<E>(data)
-    class Success<E>(data: E?) : RequestResult<E>(data)
-    class Error<E>(data: E?, message: String?) : RequestResult<E>(data)
+    class Loading<E>(data: E? = null) : RequestResult<E>(data)
+    class Success<E>(override val data: E) : RequestResult<E>(data)
+    class Error<E>(message: String?) : RequestResult<E>(message = message)
 }
