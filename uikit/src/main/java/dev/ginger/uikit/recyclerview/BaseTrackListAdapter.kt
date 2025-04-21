@@ -12,7 +12,8 @@ import dev.ginger.uikit.R
 import dev.ginger.uikit.databinding.BaseTrackListItemBinding
 import dev.ginger.uikit.models.TrackUI
 
-class BaseTrackListAdapter : RecyclerView.Adapter<BaseTrackListAdapter.BaseTrackListViewHolder>() {
+class BaseTrackListAdapter :
+    RecyclerView.Adapter<BaseTrackListAdapter.BaseTrackListViewHolder>() {
 
     var trackList = emptyList<TrackUI>()
         set(value) {
@@ -40,6 +41,12 @@ class BaseTrackListAdapter : RecyclerView.Adapter<BaseTrackListAdapter.BaseTrack
         private val explicitContentIV =
             itemView.findViewById<ImageView>(R.id.cover_explicit_content)
 
+        init {
+            itemView.setOnClickListener {
+
+            }
+        }
+
         fun onBind(track: TrackUI) {
             Glide.with(itemView.context)
                 .load(track.coverUrl)
@@ -53,8 +60,8 @@ class BaseTrackListAdapter : RecyclerView.Adapter<BaseTrackListAdapter.BaseTrack
                 explicitContentIV.visibility = View.GONE
             }
         }
-
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseTrackListViewHolder {
         val binding =

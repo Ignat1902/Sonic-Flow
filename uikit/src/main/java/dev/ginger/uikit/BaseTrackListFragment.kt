@@ -11,12 +11,12 @@ import dev.ginger.uikit.databinding.FragmentBaseTrackListBinding
 import dev.ginger.uikit.models.TrackUI
 import dev.ginger.uikit.recyclerview.BaseTrackListAdapter
 
-abstract class BaseTrackListFragment : Fragment() {
+open class BaseTrackListFragment : Fragment() {
 
     private var _binding: FragmentBaseTrackListBinding? = null
     protected val binding get() = _binding!!
 
-    private val adapter = BaseTrackListAdapter()
+    val adapter: BaseTrackListAdapter = BaseTrackListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

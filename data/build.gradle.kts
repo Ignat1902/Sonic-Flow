@@ -33,14 +33,11 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.dagger)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
-    ksp(libs.dagger.compiler)
     implementation(project(":database"))
     implementation(project(":music-api"))
 }

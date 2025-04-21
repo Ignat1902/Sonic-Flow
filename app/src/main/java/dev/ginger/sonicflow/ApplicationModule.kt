@@ -1,13 +1,13 @@
 package dev.ginger.sonicflow
 
 import android.content.Context
+import androidx.media3.exoplayer.ExoPlayer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.ginger.music.database.MusicDatabase
-import dev.ginger.music.main.presentation.ChartTracksFragment
 import dev.ginger.musicapi.MusicApi
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
@@ -37,6 +37,12 @@ object ApplicationModule {
         @ApplicationContext context: Context
     ): MusicDatabase {
         return MusicDatabase(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideExoPlayer(@ApplicationContext context: Context): ExoPlayer {
+        return ExoPlayer.Builder(context).build()
     }
 
 }

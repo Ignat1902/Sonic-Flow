@@ -42,7 +42,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -50,15 +49,13 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.dagger.hilt.android)
     implementation(libs.retrofit)
-    implementation(libs.okhttp)
-    implementation(libs.fragment)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation (libs.converter.gson)
-    implementation (libs.gson)
+    implementation(libs.androidx.media3.exoplayer)
     implementation(project(":database"))
     implementation(project(":data"))
     implementation(project(":music-api"))
     implementation(project(":features:music-main"))
+    implementation(project(":features:music-player"))
     ksp(libs.dagger.hilt.compiler)
 }

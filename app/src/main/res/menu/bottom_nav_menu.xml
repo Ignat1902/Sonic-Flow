@@ -6,4 +6,5 @@
         android:icon="@drawable/ic_music_chart"
         android:title="@string/chart" />
 
+
 </menu>

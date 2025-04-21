@@ -14,12 +14,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.ginger.music.main.R
 import dev.ginger.music.main.State
 import dev.ginger.uikit.BaseTrackListFragment
+import dev.ginger.uikit.recyclerview.BaseTrackListAdapter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ChartTracksFragment : BaseTrackListFragment() {
 
     private val viewModel: ChartTracksViewModel by viewModels()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
