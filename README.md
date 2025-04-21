@@ -38,8 +38,7 @@
 <img src="screenshots/search_track.jpg" alt="Поиск по трекам" width="45%" />
 
 ### Состояние загрузки
-
-![Скриншот списка треков](screenshots/loading_state.jpg)
+<img src="screenshots/loading_state.jpg" alt="Загрузка" width="45%" />
 
 ### Сообщение об ошибке
 
