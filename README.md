@@ -35,8 +35,7 @@
 </p>
 
 ### Поиск по трекам
-
-![Скриншот списка треков](screenshots/search_track.jpg)
+<img src="screenshots/search_track.jpg" alt="Поиск по трекам" width="500" height="300" />
 
 ### Состояние загрузки
 
