@@ -14,7 +14,7 @@
 
 Скачать .apk файл для запуска на устройстве можно [ссылке](https://disk.yandex.ru/d/aGDdISktofwX-Q)
 
-##Стек технологий
+## Стек технологий
 
 - Язык: kotlin
 - Работа с сетью: Retrofit, OkHttp
@@ -27,22 +27,22 @@
 
 ## Скриншоты работы приложения
 
-###Список треков из чарта
+### Список треков из чарта
 
 <p align="center">
   <img src="screenshots/chart_list_light_theme.jpg" alt="Список треков (Светлая тема)" width="45%"/>
   <img src="screenshots/chart_list_dark_theme.jpg" alt="Список треков (Тёмная тема)" width="45%"/>
 </p>
 
-###Поиск по трекам
+### Поиск по трекам
 
 ![Скриншот списка треков](screenshots/search_track.jpg)
 
-###Состояние загрузки
+### Состояние загрузки
 
 ![Скриншот списка треков](screenshots/loading_state.jpg)
 
-###Сообщение об ошибке
+### Сообщение об ошибке
 
 <p align="center">
   <img src="screenshots/error.jpg" alt="Описание ошибки" width="45%"/>
