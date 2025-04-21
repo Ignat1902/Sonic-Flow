@@ -35,7 +35,7 @@
 </p>
 
 ### Поиск по трекам
-<img src="screenshots/search_track.jpg" alt="Поиск по трекам" width="500" height="300" />
+<img src="screenshots/search_track.jpg" alt="Поиск по трекам" width="45%" />
 
 ### Состояние загрузки
 
