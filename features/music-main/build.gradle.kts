@@ -46,6 +46,6 @@ dependencies {
     implementation(libs.fragment)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
-    implementation(project(":uikit"))
+    implementation(project(":core-ui"))
     implementation(project(":data"))
 }

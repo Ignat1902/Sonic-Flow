@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.ginger.uikit"
+    namespace = "dev.ginger.core.ui"
     compileSdk = 35
 
     defaultConfig {

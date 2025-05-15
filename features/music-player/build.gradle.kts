@@ -49,6 +49,6 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     implementation(libs.glide)
     ksp(libs.dagger.hilt.compiler)
-    implementation(project(":uikit"))
+    implementation(project(":core-ui"))
 
 }
