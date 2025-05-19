@@ -4,24 +4,32 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import dev.ginger.music.main.R
 import dev.ginger.music.main.State
-import dev.ginger.uikit.BaseTrackListFragment
-import dev.ginger.uikit.recyclerview.BaseTrackListAdapter
+import dev.ginger.core.ui.BaseTrackListFragment
+import dev.ginger.core.ui.recyclerview.BaseTrackListAdapter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ChartTracksFragment : BaseTrackListFragment() {
 
     private val viewModel: ChartTracksViewModel by viewModels()
-
+    override val adapter: BaseTrackListAdapter = BaseTrackListAdapter {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri("android-app://dev.ginger.sonicflow/music_player_fragment".toUri())
+            .build()
+        findNavController().navigate(request)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +55,7 @@ class ChartTracksFragment : BaseTrackListFragment() {
                             binding.progressBar.isVisible = false
                             binding.errorMessage.isVisible = false
                             binding.trackListRecycler.isVisible = true
-                            updateData(state.tracks ?: emptyList())
+                            adapter.trackList = state.tracks ?: emptyList()
                         }
 
                         is State.Loading -> {

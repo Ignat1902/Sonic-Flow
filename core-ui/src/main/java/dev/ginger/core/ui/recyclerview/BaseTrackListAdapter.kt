@@ -1,4 +1,4 @@
-package dev.ginger.uikit.recyclerview
+package dev.ginger.core.ui.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import dev.ginger.uikit.R
-import dev.ginger.uikit.databinding.BaseTrackListItemBinding
-import dev.ginger.uikit.models.TrackUI
+import dev.ginger.core.ui.R
+import dev.ginger.core.ui.databinding.BaseTrackListItemBinding
+import dev.ginger.core.ui.models.TrackUI
 
-class BaseTrackListAdapter :
+class BaseTrackListAdapter(private val onClickItem: () -> Unit) :
     RecyclerView.Adapter<BaseTrackListAdapter.BaseTrackListViewHolder>() {
 
     var trackList = emptyList<TrackUI>()
@@ -43,7 +43,10 @@ class BaseTrackListAdapter :
 
         init {
             itemView.setOnClickListener {
-
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onClickItem()
+                }
             }
         }
 

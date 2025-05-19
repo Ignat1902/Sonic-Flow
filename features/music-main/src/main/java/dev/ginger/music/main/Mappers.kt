@@ -2,7 +2,7 @@ package dev.ginger.music.main
 
 import dev.ginger.data.RequestResult
 import dev.ginger.data.models.Track
-import dev.ginger.uikit.models.TrackUI
+import dev.ginger.core.ui.models.TrackUI
 
 internal fun RequestResult<List<TrackUI>>.toState(): State {
     return when (this) {

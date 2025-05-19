@@ -2,26 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/chartTracksFragment">
+    app:startDestination="@id/music_main_nav_graph">
 
-    <fragment
-        android:id="@+id/chartTracksFragment"
-        android:name="dev.ginger.music.main.presentation.ChartTracksFragment"
-        android:label="Chart Tracks">
-
-        <action
-            android:id="@+id/action_chartTracksFragment_to_playerMusicFragment"
-            app:destination="@id/playerMusicFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/playerMusicFragment"
-        android:name="dev.ginger.music.player.MusicPlayerFragment"
-        android:label="Chart Tracks">
-        <action
-            android:id="@+id/action_playerMusicFragment_to_chartTracksFragment"
-            app:destination="@id/chartTracksFragment" />
-    </fragment>
-
+    <include app:graph="@navigation/music_main_nav_graph" />
+    <include app:graph="@navigation/music_player_nav_graph" />
 
 </navigation>

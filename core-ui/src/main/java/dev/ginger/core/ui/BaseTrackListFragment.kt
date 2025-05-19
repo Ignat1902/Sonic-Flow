@@ -1,4 +1,4 @@
-package dev.ginger.uikit
+package dev.ginger.core.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import dev.ginger.uikit.databinding.FragmentBaseTrackListBinding
-import dev.ginger.uikit.models.TrackUI
-import dev.ginger.uikit.recyclerview.BaseTrackListAdapter
+import dev.ginger.core.ui.databinding.FragmentBaseTrackListBinding
+import dev.ginger.core.ui.models.TrackUI
+import dev.ginger.core.ui.recyclerview.BaseTrackListAdapter
 
-open class BaseTrackListFragment : Fragment() {
+abstract class BaseTrackListFragment : Fragment() {
 
     private var _binding: FragmentBaseTrackListBinding? = null
     protected val binding get() = _binding!!
 
-    val adapter: BaseTrackListAdapter = BaseTrackListAdapter()
+    abstract val adapter: BaseTrackListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -6,17 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
+import dev.ginger.core.ui.R
 import com.bumptech.glide.Glide
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 import dagger.hilt.android.AndroidEntryPoint
 import dev.ginger.music.player.databinding.FragmentMusicPlayerBinding
-import dev.ginger.uikit.R
 import java.util.Locale
 
 @AndroidEntryPoint

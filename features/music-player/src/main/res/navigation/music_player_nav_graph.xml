@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/music_player_nav_graph"
+    app:startDestination="@id/music_player_fragment">
+
+    <fragment
+        android:id="@+id/music_player_fragment"
+        android:name="dev.ginger.music.player.MusicPlayerFragment">
+        <deepLink app:uri="android-app://dev.ginger.sonicflow/music_player_fragment" />
+    </fragment>
+
+</navigation>

@@ -1,4 +1,4 @@
-package dev.ginger.uikit.models
+package dev.ginger.core.ui.models
 
 data class TrackUI(
     val id: Long,

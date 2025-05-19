@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/music_main_nav_graph"
+    app:startDestination="@id/chart_tracks_fragment">
+
+    <fragment
+        android:id="@+id/chart_tracks_fragment"
+        android:name="dev.ginger.music.main.presentation.ChartTracksFragment" />
+
+</navigation>

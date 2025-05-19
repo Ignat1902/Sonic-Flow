@@ -1,6 +1,6 @@
 package dev.ginger.music.main
 
-import dev.ginger.uikit.models.TrackUI
+import dev.ginger.core.ui.models.TrackUI
 
 sealed class State(val tracks: List<TrackUI>?, val errorMessage: String? = null) {
 

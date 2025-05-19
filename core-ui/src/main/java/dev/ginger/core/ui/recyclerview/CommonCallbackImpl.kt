@@ -1,4 +1,4 @@
-package dev.ginger.uikit.recyclerview
+package dev.ginger.core.ui.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
 

@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.fragment)
+    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
     implementation(project(":core-ui"))
