@@ -48,13 +48,3 @@
   <img src="screenshots/error.jpg" alt="Описание ошибки" width="45%"/>
   <img src="screenshots/error_try.jpg" alt="Диалоговое окно об ошибке" width="45%"/>
 </p>
-
-## Примечания:
-
-Я столкнулся с несколькими трудностями при реализации медиа плеера, включая управление состоянием плеера, обработку метаданных треков и взаимодействие с медиа-сервисом.
-Эти вопросы требовали дополнительных исследований и тестирования, что ограничило время на завершение всех задуманных функций.
-В ветке [features/music-player](https://github.com/Ignat1902/Sonic-Flow/tree/features/music-player/features/music-player/src/main/java/dev/ginger/music/player) можно посмотреть мои наработки.
-
-
-
-
